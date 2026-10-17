@@ -1,0 +1,4 @@
+.c-header__logo {
+  -webkit-mask-image: url("/images/logo.svg");
+  mask-image: url("/images/logo.svg");
+}
