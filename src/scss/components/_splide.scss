@@ -57,6 +57,11 @@
     width: clamp(3.5rem, calc(2.069rem + 6.107vw), 5rem); //56 to 80px
     height: clamp(3.5rem, calc(2.069rem + 6.107vw), 5rem); //56 to 80px
 
+    // 인터랙션 개선: 이동 없이 배경색으로 hover를 표시하고 기존 포커스 윤곽선은 유지한다.
+    &:hover {
+      background-color: #444;
+    }
+
     &:focus-visible {
       outline: 2px solid #fff;
       outline-offset: -6px; // 버튼 안쪽으로

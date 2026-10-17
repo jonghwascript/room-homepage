@@ -154,7 +154,8 @@ body {
       color: $bg-white;
       position: relative;
 
-      &:hover::after {
+      &:hover::after,
+      &:focus-visible::after {
         content: '';
         position: absolute;
         bottom: -6px;
@@ -407,4 +408,50 @@ body {
       display: none;
     }
   }
+}
+
+// 인터랙션 개선: 키보드 포커스는 배경과 구분되는 흑백 이중 표시로 제공한다.
+:is(.c-nav-panel-toggle, .c-nav-panel__close, .c-nav-panel__link, .c-shop__show-now, .attribution a):focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px #fff;
+}
+
+.c-nav-panel-toggle:is(:hover, :focus-visible) {
+  background-color: rgba(0, 0, 0, 0.65);
+}
+
+.c-nav-panel__close:is(:hover, :focus-visible) {
+  background-color: #efefef;
+
+  // 기존 SVG의 낮은 opacity가 활성 상태의 아이콘까지 흐리게 만들지 않도록 한다.
+  path {
+    opacity: 1;
+  }
+}
+
+.c-nav-panel__link:is(:hover, :focus-visible) {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.3em;
+}
+
+.c-shop__show-now:is(:hover, :focus-visible) {
+  color: #444;
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+
+  .c-shop__arrow-icon {
+    color: inherit;
+  }
+}
+
+.attribution a:is(:hover, :focus-visible) {
+  color: #000;
+  text-decoration-thickness: 0.15em;
+  text-underline-offset: 0.2em;
+}
+
+.c-skip-link:hover {
+  text-decoration-style: double;
 }
