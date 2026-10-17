@@ -152,6 +152,18 @@ body {
 
     @include mq('desktop') {
       color: $bg-white;
+      position: relative;
+
+      &:hover::after {
+        content: '';
+        position: absolute;
+        bottom: -6px;
+        left: 50%;
+        width: 16px;
+        height: 2px;
+        background-color: $bg-white;
+        transform: translateX(-50%);
+      }
     }
   }
 }
@@ -368,5 +380,31 @@ body {
     line-height: 1.4;
     letter-spacing: -0.03125em; //-0.5px;
     color: $color-body-text;
+  }
+}
+
+// 메뉴 오버레이: 패널 바깥의 화면 전체를 검정 50%로 덮고 메뉴는 위에 표시한다.
+.c-header {
+  &::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  &:has([data-nav-panel].is-open)::before {
+    display: block;
+  }
+
+  [data-nav-panel] {
+    z-index: 1;
+  }
+
+  @include mq('desktop') {
+    &:has([data-nav-panel].is-open)::before {
+      display: none;
+    }
   }
 }
