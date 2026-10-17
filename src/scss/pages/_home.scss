@@ -161,8 +161,12 @@ body {
 }
 
 .c-main {
-  --space: 64px;
   display: grid;
+  gap: 64px;
+
+  > * {
+    margin-block: 0;
+  }
   grid-template-columns: minmax(0, 1fr);
   grid-template-areas: 'splide' 'shop' 'about';
 
