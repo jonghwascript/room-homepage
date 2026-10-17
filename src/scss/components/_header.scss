@@ -141,8 +141,7 @@
       color: $bg-white;
       position: relative;
 
-      &:hover::after,
-      &:focus-visible::after {
+      &::after {
         content: '';
         position: absolute;
         bottom: -6px;
@@ -150,7 +149,21 @@
         width: 16px;
         height: 2px;
         background-color: $bg-white;
-        transform: translateX(-50%);
+        // 밑줄을 중앙에서 양쪽으로 펼치고, 해제 시 다시 중앙으로 접는다.
+        transform: translateX(-50%) scaleX(0);
+        transform-origin: center;
+        transition: transform 0.2s ease-out;
+      }
+
+      &:hover::after,
+      &:focus-visible::after {
+        transform: translateX(-50%) scaleX(1);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        &::after {
+          transition: none;
+        }
       }
     }
   }
@@ -198,4 +211,9 @@
   text-decoration: underline;
   text-decoration-thickness: 2px;
   text-underline-offset: 0.3em;
+
+  // 데스크톱은 기존 ::after의 짧은 밑줄만 사용해 이중 표시를 방지한다.
+  @include mq('desktop') {
+    text-decoration: none;
+  }
 }

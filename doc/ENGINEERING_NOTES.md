@@ -368,3 +368,15 @@ Storybook 설정에서 존재하지 않는 src/fonts 정적 폴더를 제거했�
 푸터 기본 글꼴·색상과 사용자 추가 상단 여백 10px을 attribution 컴포넌트로 통합하고 Storybook preview 중복 선언을 제거했다. 이동 전후 컴파일된 선택자별 선언이 일치함을 확인했다. HTML include 처리·스토리 JavaScript 문법·SCSS 컴파일·전체 공백 검사와 최종 Storybook 빌드를 완료했다. 최종 빌드의 18개 스토리 렌더링 및 설명 연동 슬라이더를 Chrome에서 재검사했고 페이지 JavaScript 오류와 자산 404가 없었다. 외부 웹폰트는 차단했다. Firefox·전체 시각 검토는 미검증이다.
 
 [홈페이지 캡처](../screenshot.jpg)를 확인해 문서용 이미지로 포함한다. 사진은 실제 UI 캡처이며 모든 최신 상태의 정확성을 보장하는 회귀 기준은 아니다. 기존 chromatic.yml에는 변경이 없으며 push나 Chromatic 배포는 실행하지 않았다.
+
+## 23. 메뉴 링크 밑줄의 화면별 구분
+
+_header.scss에서 hover·focus-visible의 텍스트 밑줄은 모바일·태블릿에 유지하고, 데스크톱에서는 text-decoration: none으로 해제했다. 데스크톱의 기존 ::after 중앙 16px 밑줄만 남겨 이중 표시를 방지하며 이유를 코드 주석에 남겼다.
+
+검증 완료: Chrome 375/1023/1024/1440×900에서 hover와 키보드 focus-visible을 각각 검사해 1024px 미만은 텍스트 밑줄만, 이상은 짧은 가상 요소 밑줄만 적용됨을 확인했다. SCSS 컴파일·공백 검사 통과. dist는 변경하지 않았다. Firefox·전체 수동 시각 검토는 미검증이다.
+
+## 24. 데스크톱 메뉴 밑줄의 중앙 확장 효과
+
+_header.scss의 데스크톱 ::after를 기본 상태부터 생성하고 translateX(-50%) scaleX(0)으로 접어 둔다. hover·focus-visible에서 scaleX(1)로 0.2초 ease-out 전환하며 transform-origin: center를 사용해 중앙에서 양쪽으로 펼친다. 해제하면 중앙으로 접히며, prefers-reduced-motion: reduce에서는 전환 없이 표시한다. 코드 주석에 의도를 남겼다.
+
+검증 완료: Chrome 1440×900에서 기본 scale 0, hover 중간 약 0.49, 완료 1, 해제 후 0 및 키보드 포커스 시 1을 확인했다. 변환 기준은 16×2px 밑줄의 중앙(8px 1px)이며 reduce에서 전환 시간 0초였다. 375×900에서는 가상 요소 없이 텍스트 밑줄이 유지됐다. SCSS 컴파일·공백 검사 통과. Firefox·실제 기기 시각 검토는 미검증이다.
