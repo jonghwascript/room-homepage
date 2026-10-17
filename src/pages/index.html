@@ -33,7 +33,8 @@
       }
     </style>
   </head>
-  <body>
+  <!-- 접근성 수정: Home 링크가 실제 문서 최상단으로 이동하도록 목적지를 제공한다. -->
+  <body id="home">
     <a class="c-skip-link" href="#main">Skip to main content</a>
     <header class="c-header l-cluster" id="banner-header" data-nav-panel-root>
       <button
@@ -58,7 +59,8 @@
         <span class="u-sr-only">Open menu</span>
       </button>
       <!-- <img width="62" height="14" class="c-header__logo" src="./images/logo.svg" alt="" /> -->
-      <span class="c-header__logo"></span>
+      <!-- 접근성 수정: CSS 마스크 로고의 브랜드명을 보조 기술에도 제공한다. -->
+      <span class="c-header__logo" role="img" aria-label="room"></span>
       <nav class="c-nav-panel" id="mainNav" aria-label="Main" data-nav-panel>
         <div class="c-nav-panel__inner l-cluster">
           <button
@@ -109,7 +111,7 @@
               <picture class="splide__picture l-frame">
                 <source
                   srcset="./images/desktop-image-hero-1.jpg"
-                  media="(min-width: 768px)"
+                  media="(min-width: 48em)"
                 />
                 <img src="./images/mobile-image-hero-1.jpg" alt="" />
               </picture>
@@ -118,7 +120,7 @@
               <picture class="splide__picture l-frame">
                 <source
                   srcset="./images/desktop-image-hero-2.jpg"
-                  media="(min-width: 768px)"
+                  media="(min-width: 48em)"
                 />
                 <img src="./images/mobile-image-hero-2.jpg" alt="" />
               </picture>
@@ -127,7 +129,7 @@
               <picture class="splide__picture l-frame">
                 <source
                   srcset="./images/desktop-image-hero-3.jpg"
-                  media="(min-width: 768px)"
+                  media="(min-width: 48em)"
                 />
                 <img src="./images/mobile-image-hero-3.jpg" alt="" />
               </picture>

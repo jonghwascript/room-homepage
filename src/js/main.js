@@ -116,7 +116,15 @@ window.addEventListener('scroll', function () {
   if (!ticking) {
     window.requestAnimationFrame(function () {
       const target = document.getElementById('banner-header');
-      if (window.scrollY > 100) {
+      // 접근성 수정: 열린 메뉴를 헤더와 함께 숨기면 본문 inert만 남아 조작이 막힌다.
+      // 메뉴가 열려 있거나 헤더 내부에 포커스가 있으면 스크롤해도 헤더를 유지한다.
+      const menuOpen = target?.querySelector('[data-nav-panel]')?.classList.contains('is-open');
+      const focusInsideHeader = target?.contains(document.activeElement);
+      if (!target) {
+        ticking = false;
+        return;
+      }
+      if (window.scrollY > 100 && !menuOpen && !focusInsideHeader) {
         target.classList.add('u-hidden');
       } else {
         target.classList.remove('u-hidden');

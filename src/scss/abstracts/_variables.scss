@@ -9,6 +9,9 @@ $font-size-preset4: 0.9375rem;
 
 $grey-800: #444444;
 $grey-500: #A0A0A0;
+
+// 접근성 수정: 흰 배경의 일반 본문에 AA 대비 4.5:1 이상의 전용 색상을 사용한다.
+$color-body-text: #707070;
 $grey-200: #D8D8D8;
 $grey-100: #EFEFEF;
 $grey-50: #FAFAFA;

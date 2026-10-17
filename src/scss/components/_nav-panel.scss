@@ -64,8 +64,10 @@
 
   // 움직임 줄이기: 슬라이드 없이 바로 열고 닫는다 (숨김 지연도 없앤다)
   @media (prefers-reduced-motion: reduce) {
+    // 접근성 수정: 열림 상태 선택자와 우선순위를 맞춰 전환을 확실히 해제한다.
     &,
-    &__inner {
+    &__inner,
+    &.is-open &__inner {
       transition: none;
     }
   }
