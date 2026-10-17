@@ -93,3 +93,63 @@ body {
     color: $bg-black;
   }
 }
+
+.splide {
+  width: 100%;
+  max-inline-size: 1150px;
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: minmax(0, auto);
+  grid-area: 1 / -1;
+}
+
+.c-main {
+  --space: 64px;
+}
+
+// ------------------------------------------
+// Shop Section
+// ------------------------------------------
+.c-shop {
+  --gutter-inline: 32.5px;
+  --measure: none;
+
+  &__item {
+    --space: 32px;
+  }
+
+  &__text {
+    --space: 16px;
+  }
+
+  &__title {
+    font-family: $font-primary;
+    font-size: $font-size-preset2;
+    font-weight: 600;
+    line-height: 100%;
+    letter-spacing: -2px;
+  }
+
+  &__description {
+    font-family: $font-primary;
+    font-size: $font-size-preset3;
+    font-weight: 500;
+    color: $grey-500;
+  }
+
+  &__show-now {
+    font-family: $font-primary;
+    font-size: $font-size-preset3;
+    letter-spacing: 12.5px;
+    text-transform: uppercase;
+    justify-content: space-between;
+  }
+
+  //높이 12px을 유지하면서 가로만 늘리려면 SVG에 다음 속성을 추가
+  //preserveAspectRatio="none"
+  &__arrow-icon {
+    width: 54px;
+    height: auto;
+    color: $bg-black;
+  }
+}

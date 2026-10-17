@@ -1,23 +1,26 @@
 // ------------------------------------------
 // splide prototype
 // ------------------------------------------
-.splide {
-  width: min(100%, 600px);
-  display: grid;
-  grid-template-columns: minmax(0, auto);
-  grid-area: 1 / -1;
-  border: 1px solid #000;
-}
-
 // 트랙과 화살표를 .splide 안의 같은 칸에 겹친다
 .splide__track {
   grid-area: 1 / 1;
 }
 
-.splide__slide img {
-  max-width: 100%;
-  height: auto;
-  object-fit: cover;
+.splide__picture {
+  --n: 376;
+  --d: 360;
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(
+      ellipse at center,
+      transparent 45%,
+      rgba(0, 0, 0, 0.18) 100%
+    );
+  }
 }
 
 .c-splide__arrows {

@@ -101,45 +101,178 @@
         </div>
       </nav>
     </header>
-    <main id="main">
-
-  Home
-  Shop
-  About
-  Contact
-
-  Discover innovative ways to decorate
-
-  We provide unmatched quality, comfort, and style for property owners across the country. 
-  Our experts combine form and function in bringing your vision to life. Create a room in your 
-  own style with our collection and make your property a reflection of you and what you love.
-
-  Shop now
-
-  We are available all across the globe
-
-  With stores all over the world, it's easy for you to find furniture for your home or place of business. 
-  Locally, we’re in most major cities throughout the country. Find the branch nearest you using our 
-  store locator. Any questions? Don't hesitate to contact us today.
-
-  Shop now
-
-  Manufactured with the best materials
-
-  Our modern furniture store provide a high level of quality. Our company has invested in advanced technology 
-  to ensure that every product is made as perfect and as consistent as possible. With three decades of 
-  experience in this industry, we understand what customers want for their home and office.
-
-  Shop now
-
-  About our furniture
-
-  Our multifunctional collection blends design and function to suit your individual taste.
-  Make each room unique, or pick a cohesive theme that best express your interests and what
-  inspires you. Find the furniture pieces you need, from traditional to contemporary styles
-  or anything in between. Product specialists are available to help you create your dream space.
-  
-
+    <main class="c-main l-stack" id="main">
+      <section class="splide" id="hero-slider" aria-label="Featured rooms">
+        <div class="splide__track">
+          <ul class="splide__list">
+            <li class="splide__slide">
+              <picture class="splide__picture l-frame">
+                <source
+                  srcset="./images/desktop-image-hero-1.jpg"
+                  media="(min-width: 64em)"
+                />
+                <img src="./images/mobile-image-hero-1.jpg" alt="" />
+              </picture>
+            </li>
+            <li class="splide__slide">
+              <picture class="splide__picture l-frame">
+                <source
+                  srcset="./images/desktop-image-hero-2.jpg"
+                  media="(min-width: 64em)"
+                />
+                <img src="./images/mobile-image-hero-2.jpg" alt="" />
+              </picture>
+            </li>
+            <li class="splide__slide">
+              <picture class="splide__picture l-frame">
+                <source
+                  srcset="./images/desktop-image-hero-3.jpg"
+                  media="(min-width: 64em)"
+                />
+                <img src="./images/mobile-image-hero-3.jpg" alt="" />
+              </picture>
+            </li>
+          </ul>
+        </div>
+        <!-- 사용자 정의 화살표 영역 -->
+        <div class="splide__arrows c-splide__arrows l-cluster">
+          <button
+            type="button"
+            class="c-splide__arrow c-splide__arrow--prev"
+            id="custom-prev"
+            aria-label="Previous slide"
+            aria-controls="hero-slider-track"
+          >
+            <svg
+              width="14"
+              height="24"
+              viewBox="0 0 14 24"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path
+                d="M13 0L1 12l12 12"
+                stroke="#FFF"
+                fill="none"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </button>
+          <button
+            type="button"
+            class="c-splide__arrow c-splide__arrow--next"
+            id="custom-next"
+            aria-label="Next slide"
+            aria-controls="hero-slider-track"
+          >
+            <svg
+              width="14"
+              height="24"
+              viewBox="0 0 14 24"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path
+                d="M1 0l12 12L1 24"
+                stroke="#FFF"
+                fill="none"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </button>
+        </div>
+      </section>
+      <section id="shop" class="c-shop l-center">
+        <div class="c-show__item c-show__item--slide01 l-stack">
+          <div class="c-shop__text l-stack">
+            <h1 class="c-shop__title">Discover innovative ways to decorate</h1>
+            <p class="c-shop__description">
+              We provide unmatched quality, comfort, and style for property
+              owners across the country. Our experts combine form and function
+              in bringing your vision to life. Create a room in your own style
+              with our collection and make your property a reflection of you and
+              what you love.
+            </p>
+          </div>
+          <button type="button" class="c-shop__show-now l-cluster">
+            <span>Shop now</span>
+            <svg
+              width="40"
+              height="12"
+              class="c-shop__arrow-icon"
+              viewBox="0 0 40 12"
+              xmlns="http://www.w3.org/2000/svg"
+              preserveAspectRatio="none"
+            >
+              <path
+                d="M34.05 0l5.481 5.527h.008v.008L40 6l-.461.465v.063l-.062-.001L34.049 12l-.662-.668 4.765-4.805H0v-1h38.206l-4.82-4.86L34.05 0z"
+                fill="currentColor"
+                fill-rule="nonzero"
+              />
+            </svg>
+          </button>
+        </div>
+        <div class="c-show__item c-show__item--slide02 l-stack u-hidden">
+          <div class="c-shop__text l-stack">
+            <h1 class="c-shop__title">We are available all across the globe</h1>
+            <p class="c-shop__description">
+              With stores all over the world, it's easy for you to find
+              furniture for your home or place of business. Locally, we’re in
+              most major cities throughout the country. Find the branch nearest
+              you using our store locator. Any questions? Don't hesitate to
+              contact us today.
+            </p>
+          </div>
+          <button type="button" class="c-shop__show-now l-cluster">
+            <span>Shop now</span>
+            <svg
+              width="40"
+              height="12"
+              class="c-shop__arrow-icon"
+              viewBox="0 0 40 12"
+              xmlns="http://www.w3.org/2000/svg"
+              preserveAspectRatio="none"
+            >
+              <path
+                d="M34.05 0l5.481 5.527h.008v.008L40 6l-.461.465v.063l-.062-.001L34.049 12l-.662-.668 4.765-4.805H0v-1h38.206l-4.82-4.86L34.05 0z"
+                fill="currentColor"
+                fill-rule="nonzero"
+              />
+            </svg>
+          </button>
+        </div>
+        <div class="c-show__item c-show__item--slide03 l-stack u-hidden">
+          <div class="c-shop__text l-stack">
+            <h1 class="c-shop__title">Manufactured with the best materials</h1>
+            <p class="c-shop__description">
+              Our modern furniture store provide a high level of quality. Our
+              company has invested in advanced technology to ensure that every
+              product is made as perfect and as consistent as possible. With
+              three decades of experience in this industry, we understand what
+              customers want for their home and office.
+            </p>
+          </div>
+          <button type="button" class="c-shop__show-now l-cluster">
+            <span>Shop now</span>
+            <svg
+              width="40"
+              height="12"
+              class="c-shop__arrow-icon"
+              viewBox="0 0 40 12"
+              xmlns="http://www.w3.org/2000/svg"
+              preserveAspectRatio="none"
+            >
+              <path
+                d="M34.05 0l5.481 5.527h.008v.008L40 6l-.461.465v.063l-.062-.001L34.049 12l-.662-.668 4.765-4.805H0v-1h38.206l-4.82-4.86L34.05 0z"
+                fill="currentColor"
+                fill-rule="nonzero"
+              />
+            </svg>
+          </button>
+        </div>
+      </section>
     </main>
     <footer class="attribution">
       Challenge by
