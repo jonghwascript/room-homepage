@@ -31,6 +31,18 @@ body {
   gap: 0;
   z-index: 999;
 
+  /* 부드러운 전환 효과 */
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+  opacity: 1;
+
+  &.u-hidden {
+    opacity: 0;
+    transform: translate(-50%, -10px); /* 위로 살짝 올라가며 사라짐 */
+    pointer-events: none; /* 사라진 상태에서 클릭 방지 */
+  }
+
   //fallback
   &::after {
     content: '';
@@ -94,6 +106,9 @@ body {
   }
 }
 
+// ------------------------------------------
+// Slide Section
+// ------------------------------------------
 .splide {
   width: 100%;
   max-inline-size: 1150px;
@@ -151,5 +166,41 @@ body {
     width: 54px;
     height: auto;
     color: $bg-black;
+  }
+}
+
+// ------------------------------------------
+// Secton about
+// ------------------------------------------
+.c-about {
+  --space: 48px;
+  &__gallery {
+    --n: 376;
+    --d: 238;
+  }
+
+  &__text {
+    --gutter-inline: 32.5px;
+    --measure: none;
+    --space: 14px;
+  }
+
+  &__title {
+    font-family: $font-primary;
+    font-size: $font-size-preset4;
+    font-weight: 700;
+    line-height: 22px;
+    letter-spacing: 5.83px;
+    text-transform: uppercase;
+    color: $bg-black;
+  }
+
+  &__description {
+    font-family: $font-primary;
+    font-size: $font-size-preset3;
+    font-weight: 500;
+    line-height: 140%;
+    letter-spacing: -0.5px;
+    color: $grey-500;
   }
 }

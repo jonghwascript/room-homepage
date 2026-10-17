@@ -108,3 +108,21 @@ document.addEventListener('DOMContentLoaded', function () {
     splide.go('>'); // 다음으로 이동
   });
 });
+
+
+let ticking = false;
+
+window.addEventListener('scroll', function () {
+  if (!ticking) {
+    window.requestAnimationFrame(function () {
+      const target = document.getElementById('banner-header');
+      if (window.scrollY > 100) {
+        target.classList.add('u-hidden');
+      } else {
+        target.classList.remove('u-hidden');
+      }
+      ticking = false;
+    });
+    ticking = true;
+  }
+});
