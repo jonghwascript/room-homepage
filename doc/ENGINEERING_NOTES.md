@@ -320,3 +320,51 @@ Home 링크의 #home 대상이 없었던 문제를 해결하기 위해 body에 �
 첫 자동 검사는 포커스된 스킵 링크가 메뉴 버튼의 포인터 입력을 가려 중단됐다. 스킵 링크 검사 후 포커스를 옮겨 다시 검사했고 위 결과를 얻었다. 실제 포인터·키보드 혼용 시 스킵 링크 위치의 겹침은 별도 검토할 수 있다.
 
 **미검증:** Firefox, 실제 웹폰트·기기 기준 시각 검토, 스크린 리더, 고대비 모드, 모든 배경에서의 포커스 표시 대비·가려짐 수동 검증. 브라우저 스타일 검사만으로 완전한 접근성 준수를 보장하지 않는다.
+
+## 20. 섹션별 SCSS 컴포넌트 분리
+
+_home.scss에 모여 있던 섹션 스타일을 components로 분리했다.
+
+| 파일 | 역할 |
+| --- | --- |
+| [header](../src/scss/components/_header.scss) | 헤더, 홈페이지 메뉴 외형·설정, 오버레이, 메뉴 hover |
+| [splide](../src/scss/components/_splide.scss) | 기존 슬라이더 스타일과 슬라이더 컨테이너 |
+| [shop](../src/scss/components/_shop.scss) | 상품 설명과 Shop now 상태 |
+| [about](../src/scss/components/_about.scss) | About 섹션 |
+| [attribution](../src/scss/components/_attribution.scss) | 푸터 링크 상태 |
+| [interaction-states](../src/scss/components/_interaction-states.scss) | 여러 컴포넌트가 공유하는 focus-visible 표시 |
+| [skip-link](../src/scss/components/_skip-link.scss) | 기존 스킵 링크와 해당 hover |
+| [home](../src/scss/pages/_home.scss) | body와 페이지 전체 Grid·섹션 배치 |
+
+메뉴 열림·닫힘의 공통 구조는 기존 _nav-panel.scss에 유지했다. style.scss에 새 모듈을 연결했으며 유틸리티는 마지막에 로드한다. 기존 주석과 스타일 값을 유지했고 사용자 작업 중인 HTML include 파일은 수정하지 않았다. 초기 분리에서는 푸터 기본 인라인 스타일을 유지했고, 최종 검토에서 _attribution.scss로 이동했다. 이전 기록의 home.scss 링크는 수정 당시 위치이며, 현재 섹션 스타일은 위 파일에서 확인한다.
+
+**검증 완료:** 분리 전후 컴파일 CSS를 PostCSS로 분석해 151개 선택자·미디어 조건 그룹의 속성값과 동일 그룹 내 선언 순서가 일치함을 확인했다. 서로 다른 선택자 사이의 전체 캐스케이드 순서까지 동일하다는 의미는 아니다.
+
+HTML include를 gulp-file-include로 메모리에서 처리하고 최신 CSS를 제공한 Chrome 헤드리스 375/768/1023/1024/1440×900에서 Shop·About 존재, 모바일 메뉴 열기·Escape 닫기·오버레이, 다음 버튼의 설명 전환, 문서 가로 넘침 없음을 확인했다. 페이지 JavaScript 오류 없음, SCSS 컴파일·공백 검사 통과. dist를 수정·삭제하는 명령은 실행하지 않았다. Firefox·전체 시각 비교·확대·모든 상태 재검증은 미검증이다.
+
+## 21. 분리된 컴포넌트의 Storybook
+
+src/stories에 Header·Splide·Shop·About·Attribution·SkipLink·InteractionStates 스토리를 추가했다. 기존 NavPanel 스토리 2개는 유지했다. 새 예시 16개를 포함해 총 18개다.
+
+- 실제 index.html의 헤더·푸터·화살표와 분리된 sections HTML을 Vite raw import로 재사용한다.
+- Header는 실제 initNavPanel을 연결하며 기본·열림 예시를 제공한다. 모바일 폭에서 열림·오버레이를, 데스크톱에서 펼쳐진 메뉴를 확인한다.
+- Splide는 기존 vendor 스크립트와 스타일을 사용한다. 시작 사진·속도·설명 표시 Controls 및 기본·설명 연동·세 번째 사진·즉시 전환 예시를 제공한다. 설명 선택 상태만 동기화하며 홈페이지의 설명 페이드 애니메이션은 복제하지 않았다.
+- Shop은 세 상품 예시와 선택 Controls, About은 세로·페이지 행 배치 예시를 제공한다.
+- SkipLink와 InteractionStates는 기본·포커스 예시를 제공한다. hover는 실제 포인터를 올리고 키보드 포커스는 Tab으로 확인한다.
+- 커스텀 데모 요소의 연결·해제 콜백으로 메뉴·슬라이더 인스턴스와 이벤트·inert 상태를 정리한다.
+- Docs 예시는 iframe으로 분리해 고정 위치와 중복 ID의 간섭을 줄인다. 단독 Canvas의 화면 너비를 변경해 1024px 전후를 확인할 수 있다.
+- Contact·Shop now는 기존 결정대로 placeholder다. 헤더 스토리의 앵커는 Storybook을 벗어나지 않도록 예시 내부 해시로 변환한다.
+
+Storybook 설정에서 존재하지 않는 src/fonts 정적 폴더를 제거했다. 원본 이미지·vendor 자산을 staticDirs로 제공하고 preview-head에 홈페이지와 같은 Google Fonts 링크 및 Splide 원본 스크립트를 연결했다. UMD vendor를 Vite 모듈로 직접 import하면 생성자가 등록되지 않아 원본 script 로딩으로 변경했다. preview.css는 Storybook의 로고 경로를 보완한다. 푸터 기본 스타일은 최종 검토에서 attribution 컴포넌트에 통합해 preview 중복을 제거했다.
+
+실행: `npm run storybook`. 설정 변경이 있으므로 기존 개발 서버가 있다면 재시작한다. 빌드는 `npm run build-storybook -- --output-dir .git/storybook-components-review --disable-telemetry`로 수행했다. 이 출력은 임시 검증용이며 dist를 수정·삭제하지 않는다.
+
+**검증 완료:** 스토리 JavaScript 문법 검사, Storybook 정적 빌드, SCSS 컴파일. 초기 전체 공백 검사에서는 style.scss의 파일 끝 빈 줄을 확인했고 최종 검토에서 정리했다. Chrome 헤드리스 375×900에서 18개 스토리 렌더링, 메뉴 Escape·inert 해제, 데모 제거 시 정리, 스킵 링크 Focused 예시, 다음 버튼의 설명 연동을 검사했다. 1440×900에서 헤더 표시와 슬라이더 실행을 검사했다. 페이지 JavaScript 오류·자산 404 없음. 외부 웹폰트 요청은 차단했다.
+
+빌드 경고: MDX 파일 없음, 정적 logo.svg의 런타임 경로 해결, 큰 번들 청크. 로고는 실제 브라우저에서 404가 없음을 확인했다. Firefox·실제 웹폰트 렌더링·모든 Controls 조합·Docs 전체 수동 시각 검토는 미검증이다. 배포·커밋은 수행하지 않았다.
+
+## 22. 컴포넌트 분리·Storybook 최종 검토
+
+푸터 기본 글꼴·색상과 사용자 추가 상단 여백 10px을 attribution 컴포넌트로 통합하고 Storybook preview 중복 선언을 제거했다. 이동 전후 컴파일된 선택자별 선언이 일치함을 확인했다. HTML include 처리·스토리 JavaScript 문법·SCSS 컴파일·전체 공백 검사와 최종 Storybook 빌드를 완료했다. 최종 빌드의 18개 스토리 렌더링 및 설명 연동 슬라이더를 Chrome에서 재검사했고 페이지 JavaScript 오류와 자산 404가 없었다. 외부 웹폰트는 차단했다. Firefox·전체 시각 검토는 미검증이다.
+
+[홈페이지 캡처](../screenshot.jpg)를 확인해 문서용 이미지로 포함한다. 사진은 실제 UI 캡처이며 모든 최신 상태의 정확성을 보장하는 회귀 기준은 아니다. 기존 chromatic.yml에는 변경이 없으며 push나 Chromatic 배포는 실행하지 않았다.
