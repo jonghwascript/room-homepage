@@ -9,6 +9,8 @@
 }
 
 .splide__picture {
+  // 화면이 넓어져도 최대 높이 때문에 사진 너비가 줄지 않도록 슬라이드를 채운다.
+  inline-size: 100%;
   --n: 376; //376 to 768px
   --d: 360; //360 to 400px
   position: relative;
@@ -22,7 +24,10 @@
   @include mq('desktop') {
     --n: 840;
     --d: 534;
-    max-height: 534px;
+    // 데스크톱 Grid 행과 사진 높이를 맞춰 화살표 아래로 빈 영역이 생기지 않게 한다.
+    block-size: 100%;
+    max-height: none;
+    aspect-ratio: auto;
   }
 
   &::after {

@@ -14,6 +14,8 @@
   --measure: none;
 
   @include mq('desktop') {
+    // 1024~1440px 구간에서는 본문 공간을 확보하고, 1440px에서 기존 4rem 여백에 도달한다.
+    --gutter-inline: clamp(2rem, calc(7.6923vw - 2.9231rem), 4rem);
     margin-block: auto;
     margin-inline: auto;
     // 같은 Grid 영역 하단에 놓인 슬라이더 버튼과 본문이 겹치지 않게 공간을 확보한다.
