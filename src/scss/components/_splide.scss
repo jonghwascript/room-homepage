@@ -9,17 +9,19 @@
 }
 
 .splide__picture {
-  --n: 376;//376 to 768px
+  --n: 376; //376 to 768px
   --d: 360; //360 to 400px
   position: relative;
 
   @include mq('tablet') {
-    --n: 768; //376 to 768px
-    --d: 400; //360 to 400px
+    --n: 768;
+    --d: 400;
     max-height: 400px;
   }
 
   @include mq('desktop') {
+    --n: 840;
+    --d: 534;
     max-height: 534px;
   }
 
@@ -46,6 +48,8 @@
   background-color: #000;
   justify-content: center;
   align-items: center;
+
+  flex-wrap: nowrap;
 
   .c-splide__arrow {
     flex: 1;

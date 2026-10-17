@@ -20,7 +20,7 @@ body {
 // Header
 // ------------------------------------------
 .c-header {
-  width: min(calc(100% - 48px), 1150px);
+  width: min(calc(100% - 48px), 768px);
   margin-inline: auto; /* 화면 정중앙 배치 */
   position: fixed;
   //top, left/right, bottom
@@ -37,6 +37,17 @@ body {
     transform 0.3s ease;
   opacity: 1;
 
+  @include mq('desktop') {
+    // fixed 헤더의 위치를 중앙 정렬된 main(최대 너비 1440px)에 맞춘다.
+    // 화면이 더 넓으면 main의 왼쪽 여백 (화면 너비 - 1440px) / 2에 64px을 더한다.
+    // 1440px 이하에서는 max(0px, ...)로 음수 여백을 막아 왼쪽 64px을 유지한다.
+    inset: 64px auto auto calc(max(0px, (100% - 1440px) / 2) + 64px);
+    max-width: 366px;
+    grid-template-columns: auto 1fr;
+    grid-template-areas: 'left content';
+    column-gap: 56px;
+  }
+
   &.u-hidden {
     opacity: 0;
     transform: translate(-50%, -10px); /* 위로 살짝 올라가며 사라짐 */
@@ -48,6 +59,10 @@ body {
     content: '';
     grid-area: right;
     display: block;
+
+    @include mq('desktop') {
+      display: none;
+    }
   }
 
   &__hamburger-icon {
@@ -75,12 +90,22 @@ body {
     mask-repeat: no-repeat;
     -webkit-mask-size: contain;
     mask-size: contain;
+
+    @include mq('desktop') {
+      grid-area: left;
+    }
   }
 
   .c-nav-panel-toggle {
     grid-area: left;
     min-width: 0;
     justify-self: start;
+  }
+
+  .c-nav-panel {
+    @include mq('desktop') {
+      grid-area: content;
+    }
   }
 }
 
@@ -89,12 +114,25 @@ body {
   inset: 0 0 auto 0;
   height: 110px;
 
+  @include mq('desktop') {
+    height: auto;
+  }
+
   &__inner {
     justify-content: space-between;
   }
 
   &__links {
     --space: 32px;
+
+    @include mq('tablet'){
+      margin-right: 63.5px;
+    }
+
+    @include mq('desktop') {
+      justify-content: flex-start;
+      flex-wrap: nowrap;
+    }
   }
 
   &__link {
@@ -103,6 +141,10 @@ body {
     font-weight: 600;
     text-decoration: none;
     color: $bg-black;
+
+    @include mq('desktop') {
+      color: $bg-white;
+    }
   }
 }
 
@@ -115,11 +157,59 @@ body {
   margin-inline: auto;
   display: grid;
   grid-template-columns: minmax(0, auto);
-  grid-area: 1 / -1;
+  grid-area: splide;
 }
 
 .c-main {
   --space: 64px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: 'splide' 'shop' 'about';
+
+  > .c-shop {
+    grid-area: shop;
+  }
+
+  > .c-about {
+    grid-area: about;
+  }
+
+  > .c-splide__arrows {
+    grid-area: splide;
+    z-index: 1;
+  }
+
+  @include mq('desktop') {
+    display: grid;
+    max-width: 1440px;
+    margin-inline: auto;
+
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-template-rows: 534px 266px;
+    grid-template-areas:
+      'splide splide splide splide splide splide splide shop shop shop shop shop'
+      'about about about about about about about about about about about about';
+    gap: 0;
+
+    .splide {
+      grid-area: splide;
+    }
+
+    .c-shop {
+      grid-area: shop;
+    }
+
+    .c-about {
+      grid-area: about;
+      flex-direction: row;
+    }
+
+    > .c-splide__arrows {
+      grid-area: shop;
+      align-self: end;
+      justify-self: start;
+    }
+  }
 }
 
 // ------------------------------------------
@@ -132,6 +222,11 @@ body {
     4rem
   ); //32.5 to 64px
   --measure: none;
+
+  @include mq('desktop') {
+    margin-block: auto;
+    margin-inline: auto;
+  }
 
   &__item {
     --space: 32px;
@@ -194,6 +289,13 @@ body {
       --n: 768;
       --d: 300;
     }
+
+    @include mq('desktop') {
+      --n: 420;
+      --d: 266;
+
+      flex-basis: 420px;
+    }
   }
 
   &__text {
@@ -204,6 +306,14 @@ body {
     ); //32.5 to 64px
     --measure: none;
     --space: 14px;
+
+    @include mq('desktop') {
+      box-sizing: border-box;
+      --gutter-inline: 0;
+      flex: 1;
+      margin-block: auto;
+      margin-inline: auto;
+    }
   }
 
   &__title {
