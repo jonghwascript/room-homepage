@@ -1,22 +1,108 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;600;700&display=swap" rel="stylesheet">
-  <title>Frontend Mentor | Room homepage</title>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./js/vendor/splide@4.1.4/splide.min.css" />
+    <link rel="stylesheet" href="./css/style.css" />
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 0.6875rem; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
-</head>
-<body>
+    <title>Frontend Mentor | Room homepage</title>
+
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+      .attribution {
+        font-size: 0.6875rem;
+        text-align: center;
+      }
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      }
+    </style>
+  </head>
+  <body>
+    <a class="c-skip-link" href="#main">Skip to main content</a>
+    <header class="c-header l-cluster" data-nav-panel-root>
+      <button
+        type="button"
+        class="c-nav-panel-toggle"
+        data-nav-open
+        aria-expanded="false"
+        aria-controls="mainNav"
+      >
+        <svg
+          width="24"
+          height="16"
+          viewBox="0 0 24 16"
+          class="c-header__hamburger-icon"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g fill="currentColor" fill-rule="evenodd">
+            <path d="M0 0h24v2H0zM0 7h24v2H0zM0 14h24v2H0z" />
+          </g>
+        </svg>
+        <span class="u-sr-only">Open menu</span>
+      </button>
+      <!-- <img width="62" height="14" class="c-header__logo" src="./images/logo.svg" alt="" /> -->
+      <span class="c-header__logo"></span>
+      <nav class="c-nav-panel" id="mainNav" aria-label="Main" data-nav-panel>
+        <div class="c-nav-panel__inner l-cluster">
+          <button
+            type="button"
+            class="c-nav-panel__close"
+            data-nav-close
+            aria-label="Close menu"
+          >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              class="c-nav-panel__close"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M14.364.222l1.414 1.414L9.414 8l6.364 6.364-1.414 1.414L8 9.414l-6.364 6.364-1.414-1.414L6.586 8 .222 1.636 1.636.222 8 6.586 14.364.222z"
+                fill="#000"
+                fill-rule="evenodd"
+                opacity=".201"
+              />
+            </svg>
+          </button>
+          <ul class="c-nav-panel__links l-cluster">
+            <li class="c-nav-panel__item">
+              <a class="c-nav-panel__link" href="/index.html#home">Home</a>
+            </li>
+            <li class="c-nav-panel__item">
+              <a class="c-nav-panel__link" href="/index.html#shop">Shop</a>
+            </li>
+            <li class="c-nav-panel__link">
+              <a class="c-nav-panel__link" href="/index.html#about">About</a>
+            </li>
+            <li class="c-nav-panel__item">
+              <a class="c-nav-panel__link" href="/index.html#contact"
+                >Contact</a
+              >
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <main id="main">
+
   Home
   Shop
   About
@@ -53,9 +139,14 @@
   inspires you. Find the furniture pieces you need, from traditional to contemporary styles
   or anything in between. Product specialists are available to help you create your dream space.
   
-  <footer class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </footer>
-</body>
+
+    </main>
+    <footer class="attribution">
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>.
+      Coded by <a href="#">Your Name Here</a>.
+    </footer>
+  </body>
+  <script src="./js/vendor/splide@4.1.4/splide.min.js"></script>
+  <script type="module" src="./js/main.js"></script>
 </html>

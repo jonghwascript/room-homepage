@@ -8,6 +8,88 @@
 
 body {
   height: 100dvh;
+}
+
+:root {
+  --nav-panel-bg: #fff;
+  --nav-panel-padding: 47px 22.2px;
+  --nav-panel-duration: 0.3s;
+}
+
+// ------------------------------------------
+// Header
+// ------------------------------------------
+.c-header {
+  width: min(calc(100% - 48px), 1150px);
+  margin-inline: auto; /* 화면 정중앙 배치 */
+  position: fixed;
+  //top, left/right, bottom
+  inset: 48px 24px auto;
   display: grid;
-  place-content: center;
+  grid-template-columns: 1fr auto 1fr;
+  grid-template-areas: 'left content right';
+  gap: 0;
+  z-index: 999;
+
+  //fallback
+  &::after {
+    content: '';
+    grid-area: right;
+    display: block;
+  }
+
+  &__hamburger-icon {
+    width: 20px;
+    height: 14px;
+    color: $bg-white;
+  }
+
+  &__logo {
+    grid-area: content;
+    display: inline-block;
+    width: 62px;
+    height: 14px;
+
+    grid-area: content;
+    justify-self: center;
+
+    color: $bg-white;
+    background-color: currentColor; /* 부모 텍스트 색상 상속 */
+
+    /* SVG를 마스크 형태로 적용 */
+    -webkit-mask-image: url('../images/logo.svg');
+    mask-image: url('../images/logo.svg');
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+  }
+
+  .c-nav-panel-toggle {
+    grid-area: left;
+    min-width: 0;
+    justify-self: start;
+  }
+}
+
+//햄버거 메뉴 맞게 디자인 변경
+.c-nav-panel {
+  inset: 0 0 auto 0;
+  height: 110px;
+
+  &__inner {
+    justify-content: space-between;
+  }
+
+  &__links {
+    --space: 32px;
+  }
+
+  &__link {
+    font-family: $font-primary;
+    font-size: $font-size-preset3;
+    font-weight: 600;
+    text-decoration: none;
+    color: $bg-black;
+  }
 }

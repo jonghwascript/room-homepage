@@ -45,3 +45,5 @@ README-template.md
 style-guide.md
 design/*
 storybook-static
+
+/data.txt
