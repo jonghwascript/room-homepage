@@ -126,7 +126,11 @@ body {
 // Shop Section
 // ------------------------------------------
 .c-shop {
-  --gutter-inline: 32.5px;
+  --gutter-inline: clamp(
+    2.031rem,
+    calc(0.153rem + 8.015vw),
+    4rem
+  ); //32.5 to 64px
   --measure: none;
 
   &__item {
@@ -139,7 +143,7 @@ body {
 
   &__title {
     font-family: $font-primary;
-    font-size: $font-size-preset2;
+    font-size: clamp(2.5rem, calc(2.023rem + 2.036vw), 3rem); //40px to  48px
     font-weight: 600;
     line-height: 100%;
     letter-spacing: -2px;
@@ -157,7 +161,8 @@ body {
     font-size: $font-size-preset3;
     letter-spacing: 12.5px;
     text-transform: uppercase;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 0;
   }
 
   //높이 12px을 유지하면서 가로만 늘리려면 SVG에 다음 속성을 추가
@@ -166,6 +171,13 @@ body {
     width: 54px;
     height: auto;
     color: $bg-black;
+    //sapce-between 효과
+    margin-inline-start: calc(100% - 234px);
+    transition: margin-inline-start 0.4s ease;
+    @include mq('tablet') {
+      /* 태블릿에서는 둘 사이 간격을 24px로 좁힘 */
+      margin-inline-start: 24px;
+    }
   }
 }
 
@@ -173,14 +185,23 @@ body {
 // Secton about
 // ------------------------------------------
 .c-about {
-  --space: 48px;
+  --space: clamp(3rem, calc(2.046rem + 4.071vw), 4rem); //48 to 64PX
   &__gallery {
     --n: 376;
     --d: 238;
+
+    @include mq('tablet') {
+      --n: 768;
+      --d: 300;
+    }
   }
 
   &__text {
-    --gutter-inline: 32.5px;
+    --gutter-inline: clamp(
+      2.031rem,
+      calc(0.153rem + 8.015vw),
+      4rem
+    ); //32.5 to 64px
     --measure: none;
     --space: 14px;
   }

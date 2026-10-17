@@ -1,3 +1,5 @@
+@use '../abstracts' as *;
+
 // ------------------------------------------
 // splide prototype
 // ------------------------------------------
@@ -7,9 +9,20 @@
 }
 
 .splide__picture {
-  --n: 376;
-  --d: 360;
+  --n: 376;//376 to 768px
+  --d: 360; //360 to 400px
   position: relative;
+
+  @include mq('tablet') {
+    --n: 768; //376 to 768px
+    --d: 400; //360 to 400px
+    max-height: 400px;
+  }
+
+  @include mq('desktop') {
+    max-height: 534px;
+  }
+
   &::after {
     content: '';
     position: absolute;
@@ -37,17 +50,17 @@
   .c-splide__arrow {
     flex: 1;
     background-color: #000;
-    width: 56px;
-    height: 56px;
+    width: clamp(3.5rem, calc(2.069rem + 6.107vw), 5rem); //56 to 80px
+    height: clamp(3.5rem, calc(2.069rem + 6.107vw), 5rem); //56 to 80px
 
     &:focus-visible {
       outline: 2px solid #fff;
       outline-offset: -6px; // 버튼 안쪽으로
     }
 
-    > svg {
-      width: 8.4px;
-      height: 16.8px;
+    .c-splide__arrow-icon {
+      width: clamp(0.525rem, calc(0.31rem + 0.916vw), 0.75rem); //8.4 to 12px
+      height: clamp(1.05rem, calc(0.621rem + 1.832vw), 1.5rem); //16.8 TO 24PX
     }
   }
 }
