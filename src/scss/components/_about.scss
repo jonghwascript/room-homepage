@@ -1,0 +1,68 @@
+@use '../abstracts' as *;
+
+.c-about {
+  --space: clamp(3rem, calc(2.046rem + 4.071vw), 4rem); //48 to 64PX
+  &__gallery {
+    --n: 376;
+    --d: 238;
+
+    @include mq('tablet') {
+      --n: 768;
+      --d: 300;
+    }
+
+    @include mq('desktop') {
+      --n: 420;
+      --d: 266;
+
+      // 접근성 수정: 고정 너비 이미지가 확대된 본문을 바깥으로 밀지 않도록 비율로 나눈다.
+      flex: 0 1 29.166667%;
+      min-inline-size: 0;
+    }
+  }
+
+  &__text {
+    // 접근성 수정: 모바일에서도 padding과 본문이 화면 너비를 넘지 않게 한다.
+    box-sizing: border-box;
+    inline-size: 100%;
+    min-inline-size: 0;
+    overflow-wrap: anywhere;
+    --gutter-inline: clamp(
+      2.031rem,
+      calc(0.153rem + 8.015vw),
+      4rem
+    ); //32.5 to 64px
+    --measure: none;
+    --space: 0.875rem; //14px
+
+    @include mq('desktop') {
+      box-sizing: border-box;
+      --gutter-inline: 0;
+      flex: 1;
+      min-inline-size: 0;
+      overflow-wrap: anywhere;
+      margin-block: auto;
+      margin-inline: auto;
+    }
+  }
+
+  &__title {
+    font-family: $font-primary;
+    font-size: $font-size-preset4;
+    font-weight: 700;
+    // 접근성 수정: 글자만 확대해도 줄 간격이 함께 늘어나도록 단위 없이 지정한다.
+    line-height: 1.4;
+    letter-spacing: 0.389em; //5.83px;
+    text-transform: uppercase;
+    color: $bg-black;
+  }
+
+  &__description {
+    font-family: $font-primary;
+    font-size: $font-size-preset3;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: -0.03125em; //-0.5px;
+    color: $color-body-text;
+  }
+}

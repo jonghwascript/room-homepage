@@ -1,0 +1,82 @@
+@use '../abstracts' as *;
+
+.c-shop {
+  // 접근성 수정: l-center의 여백을 너비에 포함하고 긴 단어도 열 안에서 줄바꿈한다.
+  box-sizing: border-box;
+  inline-size: 100%;
+  min-inline-size: 0;
+  overflow-wrap: anywhere;
+  --gutter-inline: clamp(
+    2.031rem,
+    calc(0.153rem + 8.015vw),
+    4rem
+  ); //32.5 to 64px
+  --measure: none;
+
+  @include mq('desktop') {
+    margin-block: auto;
+    margin-inline: auto;
+    // 같은 Grid 영역 하단에 놓인 슬라이더 버튼과 본문이 겹치지 않게 공간을 확보한다.
+    padding-block: 1rem calc(5rem + 1rem);
+  }
+
+  &__item {
+    --space: 2rem;
+  }
+
+  &__text {
+    --space: 1rem;
+  }
+
+  &__title {
+    font-family: $font-primary;
+    font-size: clamp(2.5rem, calc(2.023rem + 2.036vw), 3rem); //40px to  48px
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -2px;
+  }
+
+  &__description {
+    font-family: $font-primary;
+    font-size: $font-size-preset3;
+    font-weight: 500;
+    color: $color-body-text;
+  }
+
+  &__show-now {
+    font-family: $font-primary;
+    font-size: $font-size-preset3;
+    letter-spacing: 0.78125em; //12.5px; 글자 크기에 비례하도록
+    text-transform: uppercase;
+    // 접근성 수정: 고정된 글자 너비 계산 대신 Flex 간격으로 확대와 줄바꿈을 수용한다.
+    justify-content: space-between;
+    gap: 1.5rem; //24px
+
+    > span {
+      min-inline-size: 0;
+    }
+
+    @include mq('tablet') {
+      justify-content: flex-start;
+    }
+  }
+
+  //높이 12px을 유지하면서 가로만 늘리려면 SVG에 다음 속성을 추가
+  //preserveAspectRatio="none"
+  &__arrow-icon {
+    width: 54px;
+    height: auto;
+    color: $bg-black;
+    flex-shrink: 0;
+  }
+}
+
+.c-shop__show-now:is(:hover, :focus-visible) {
+  color: #444;
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+
+  .c-shop__arrow-icon {
+    color: inherit;
+  }
+}

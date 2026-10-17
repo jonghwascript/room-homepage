@@ -9,6 +9,11 @@
 @use 'components/nav-panel';
 @use 'components/splide';
 
+@use 'components/header';
+@use 'components/shop';
+@use 'components/about';
+@use 'components/attribution';
 @use 'pages/home';
+@use 'components/interaction-states';
 
 @use 'utilities/utilities'; // 같은 명시도에서 다른 규칙을 이기도록 마지막에

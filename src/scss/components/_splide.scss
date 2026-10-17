@@ -73,3 +73,12 @@
     }
   }
 }
+
+.splide {
+  width: 100%;
+  max-inline-size: 1150px;
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: minmax(0, auto);
+  grid-area: splide;
+}
