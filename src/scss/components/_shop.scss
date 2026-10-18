@@ -1,7 +1,11 @@
 @use '../abstracts' as *;
 
 .c-shop {
-  // 접근성 수정: l-center의 여백을 너비에 포함하고 긴 단어도 열 안에서 줄바꿈한다.
+  /*
+  관계: 요소의 너비를 부모의 사용 가능한 너비에 맞춘다.
+  제한: 지정한 너비 안에 패딩과 테두리를 포함하고,콘텐츠의 최소 너비 때문에 축소가 막히지 않게 한다.
+  전환: 긴 문자열이 한 줄에 들어가지 않으면 필요한 위치에서 줄바꿈한다.
+  */
   box-sizing: border-box;
   inline-size: 100%;
   min-inline-size: 0;
@@ -14,11 +18,20 @@
   --measure: none;
 
   @include mq('desktop') {
-    // 1024~1440px 구간에서는 본문 공간을 확보하고, 1440px에서 기존 4rem 여백에 도달한다.
+    /*
+      관계: 화면이 넓어질수록 좌우 패딩을 선형으로 늘린다.
+      제한: 각 패딩은 최소 2rem, 최대 4rem을 유지한다.
+      전환: 계산값이 2rem 이하면 2rem, 4rem 이상이면 4rem으로 고정한다.
+    */
+    // 1024px부터 1440px까지 패딩을 32px에서 64px로 점진적으로 늘린다
     --gutter-inline: clamp(2rem, calc(7.6923vw - 2.9231rem), 4rem);
     margin-block: auto;
     margin-inline: auto;
-    // 같은 Grid 영역 하단에 놓인 슬라이더 버튼과 본문이 겹치지 않게 공간을 확보한다.
+    /*
+      관계: 위쪽에는 기본 여백 1rem을 두고, 아래쪽에는 5rem에 기본 여백 1rem을 더한다.
+      제한: 아래쪽 패딩을 합계 6rem으로 확보한다.
+      전환: 화면 크기에 따른 변화는 없다.
+    */
     padding-block: 1rem calc(5rem + 1rem);
   }
 
