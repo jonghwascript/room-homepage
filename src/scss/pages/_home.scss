@@ -12,6 +12,7 @@ body {
     // 접근성 수정: Grid 자식이 글자 확대 시 열 너비보다 커지지 않게 한다.
     min-inline-size: 0;
   }
+  //1개의 열(트랙)이 남는 공간을 모두 채우되, 내부 콘텐츠의 길이에 상관없이 0까지 유연하게 줄어들 수 있도록
   grid-template-columns: minmax(0, 1fr);
   grid-template-areas: 'splide' 'shop' 'about';
 
@@ -33,6 +34,7 @@ body {
     max-width: 1440px;
     margin-inline: auto;
 
+    //12개 열 모두가 예외 없이 완벽하게 1/12의 비율을 유지
     grid-template-columns: repeat(12, minmax(0, 1fr));
     // 접근성 수정: 디자인 높이는 최소값으로 두고 확대된 본문만큼 행을 늘린다.
     grid-template-rows: minmax(534px, auto) minmax(266px, auto);

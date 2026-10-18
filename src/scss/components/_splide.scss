@@ -1,8 +1,16 @@
 @use '../abstracts' as *;
 
-// ------------------------------------------
-// splide prototype
-// ------------------------------------------
+//트랙과 화살표를 겹치게 하기 위해 grid 선언
+.splide {
+  inline-size: 100%;
+  max-inline-size: 1150px;
+  margin-inline: auto;
+  display: grid;
+  //열(Column)의 너비가 콘텐츠 크기에 맞춰 늘어나되, 공간이 부족할 때는 내용물에 구애받지 않고 0까지 유연하게 줄어든다.
+  grid-template-columns: minmax(0, auto);
+  grid-area: splide;
+}
+
 // 트랙과 화살표를 .splide 안의 같은 칸에 겹친다
 .splide__track {
   grid-area: 1 / 1;
@@ -11,25 +19,29 @@
 .splide__picture {
   // 화면이 넓어져도 최대 높이 때문에 사진 너비가 줄지 않도록 슬라이드를 채운다.
   inline-size: 100%;
-  --n: 376; //376 to 768px
-  --d: 360; //360 to 400px
+  --n: 376; //376px
+  --d: 360; //360px
   position: relative;
 
   @include mq('tablet') {
     --n: 768;
     --d: 400;
-    max-height: 400px;
+    // 현재 비율이 768 / 400이므로, 제한을 없애면 너비 900px에서 비율상 높이는 약 469px이 된다
+    max-block-size: 400px;
   }
 
   @include mq('desktop') {
     --n: 840;
     --d: 534;
     // 데스크톱 Grid 행과 사진 높이를 맞춰 화살표 아래로 빈 영역이 생기지 않게 한다.
+    // 928px ~ 1023 px 구간 문제
     block-size: 100%;
-    max-height: none;
+    max-block-size: none;
+    // 비율 고정을 풀고 콘텐츠 높이에 맞춤
     aspect-ratio: auto;
   }
 
+  // 접근성 개선 (메뉴 글자가 잘 보이지 않음)
   &::after {
     content: '';
     position: absolute;
@@ -64,7 +76,7 @@
 
     // 인터랙션 개선: 이동 없이 배경색으로 hover를 표시하고 기존 포커스 윤곽선은 유지한다.
     &:hover {
-      background-color: #444;
+      background-color: $grey-800;
     }
 
     &:focus-visible {
@@ -74,16 +86,7 @@
 
     .c-splide__arrow-icon {
       width: clamp(0.525rem, calc(0.31rem + 0.916vw), 0.75rem); //8.4 to 12px
-      height: clamp(1.05rem, calc(0.621rem + 1.832vw), 1.5rem); //16.8 TO 24PX
+      height: clamp(1.05rem, calc(0.621rem + 1.832vw), 1.5rem); //16.8 to 24PX
     }
   }
-}
-
-.splide {
-  width: 100%;
-  max-inline-size: 1150px;
-  margin-inline: auto;
-  display: grid;
-  grid-template-columns: minmax(0, auto);
-  grid-area: splide;
 }
