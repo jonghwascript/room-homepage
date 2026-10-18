@@ -51,15 +51,33 @@
     letter-spacing: 0.78125em; //12.5px; 글자 크기에 비례하도록
     text-transform: uppercase;
     // 접근성 수정: 고정된 글자 너비 계산 대신 Flex 간격으로 확대와 줄바꿈을 수용한다.
-    justify-content: space-between;
+    justify-content: flex-start;
     gap: 1.5rem; //24px
+
+    &:hover,
+    &:focus-visible {
+      color: $grey-500;
+      text-decoration: underline;
+      text-underline-offset: 0.3em;
+
+      .c-shop__arrow-icon {
+        color: inherit;
+      }
+    }
 
     > span {
       min-inline-size: 0;
-    }
+      text-align: start;
+      flex: 1 1 auto;
+      transition: flex-grow 0.4s ease;
 
-    @include mq('tablet') {
-      justify-content: flex-start;
+      @include mq('tablet') {
+        flex-grow: 0;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        transition: none;
+      }
     }
   }
 
@@ -70,15 +88,5 @@
     height: auto;
     color: $bg-black;
     flex-shrink: 0;
-  }
-}
-
-.c-shop__show-now:is(:hover, :focus-visible) {
-  color: #444;
-  text-decoration: underline;
-  text-underline-offset: 0.3em;
-
-  .c-shop__arrow-icon {
-    color: inherit;
   }
 }
