@@ -1,0 +1,16 @@
+@use '../abstracts' as *;
+
+.attribution {
+  margin-block-start: 10px;
+  font-size: 0.6875rem;
+  text-align: center;
+}
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}
+
+.attribution a:is(:hover, :focus-visible) {
+  color: #000;
+  text-decoration-thickness: 0.15em;
+  text-underline-offset: 0.2em;
+}

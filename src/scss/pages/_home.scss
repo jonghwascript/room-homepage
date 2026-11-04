@@ -1,0 +1,81 @@
+@use '../abstracts' as *;
+
+body {
+  height: 100dvh;
+}
+
+.c-main {
+  display: grid;
+  gap: 4rem; //64px
+
+  > * {
+    /*
+    관계: 요소의 너비는 부모의 공간과 배치 규칙에 따라 결정된다.
+    제한: 콘텐츠가 요구하는 최소 너비를 유지할 의무를 없앤다.
+    전환: 별도의 배치 전환 없이, 공간이 부족하면 더 작아질 수 있다.
+    */
+    min-inline-size: 0;
+  }
+  /*
+  관계: 하나의 열이 컨테이너의 사용 가능한 너비를 채운다.
+  제한: 열의 최소 크기를 0으로 두어 콘텐츠의 최소 너비에 묶이지 않게 한다.
+  전환: 열 개수는 계속 하나이며, 컨테이너에 따라 너비만 변한다.
+  */
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: 'splide' 'shop' 'about';
+
+  > .c-shop {
+    grid-area: shop;
+  }
+
+  > .c-about {
+    grid-area: about;
+  }
+
+  > .c-splide__arrows {
+    grid-area: splide;
+    z-index: 1;
+  }
+
+  @include mq('desktop') {
+    display: grid;
+    /*
+    관계: 컨테이너의 좌우 바깥 여백을 같게 하여 중앙에 배치한다.
+    제한: 컨테이너의 최대 너비는 1440px이다.
+    전환: 부모가 1440px보다 넓으면 좌우 여백이 생기고, 그 이하에서는 부모의 사용 가능한 너비를 채운다.
+    */
+    max-width: 1440px;
+    margin-inline: auto;
+
+    /*
+      관계: 열 사이 간격을 제외한 공간을 12개 열이 똑같이 나눠 갖는다.
+      제한: 첫 번째 행은 최소 534px, 두 번째 행은 최소 266px을 확보한다.
+      전환: 콘텐츠에 더 많은 높이가 필요하면 해당 행이 늘어난다.
+    */
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-template-rows: minmax(534px, auto) minmax(266px, auto);
+    grid-template-areas:
+      'splide splide splide splide splide splide splide shop shop shop shop shop'
+      'about about about about about about about about about about about about';
+    gap: 0;
+
+    .splide {
+      grid-area: splide;
+    }
+
+    .c-shop {
+      grid-area: shop;
+    }
+
+    .c-about {
+      grid-area: about;
+      flex-direction: row;
+    }
+
+    > .c-splide__arrows {
+      grid-area: shop;
+      align-self: end;
+      justify-self: start;
+    }
+  }
+}

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./js/vendor/splide@4.1.4/splide.min.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+
+    <title>Frontend Mentor | Room homepage</title>
+  </head>
+  <!-- 접근성 수정: Home 링크가 실제 문서 최상단으로 이동하도록 목적지를 제공한다. -->
+  <body id="home">
+    <a class="c-skip-link" href="#main">Skip to main content</a>
+    <!-- Head -->
+    @@include('./components/head.html')
+    <main class="c-main" id="main">
+      <!-- Section slide -->
+      @@include('./components/splide.html')
+      <!-- 사용자 정의 화살표 영역 -->
+      @@include('./components/arrow.html')
+      <!-- Section shop -->
+      @@include('./components/shop.html')
+      <!-- Section About -->
+      @@include('./components/about.html')
+    </main>
+    <!-- footer -->
+    @@include('./components/footer.html')
+  </body>
+  <script src="./js/vendor/splide@4.1.4/splide.min.js"></script>
+  <script type="module" src="./js/main.js"></script>
+</html>
